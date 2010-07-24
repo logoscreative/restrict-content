@@ -6,7 +6,7 @@ Description: Restrict Content to registered users only. This is a simple plugin 
 
 This plugin will also allow you to restrict sections of content within a post or page.
 
-Version: 1.1
+Version: 1.2
 Author: Pippin Williamson
 Author URL: http://pippinspages.com
 Tags: Restrict content, member only, registered, logged in
