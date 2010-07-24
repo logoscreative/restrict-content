@@ -6,6 +6,7 @@ Description: Restrict Content to registered users only.
 Version: 1.1
 Author: Pippin Williamson
 Author URL: http://pippinspages.com
+Tags: Restrict content, member only, registered, logged in
 */
 
 
