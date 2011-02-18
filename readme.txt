@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=__LAzNlD
 Tags: restrict content, restriction, registered only, registered users, premium content
 Requires at least 2.8
 Tested up to 3.0.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 Restrict Content to registered users only. This is a simple plugin that will allow you to easily restrict complete posts / pages to logged in users only. Levels of restriction may also be set. For example, you can restrict content to only Administrators, Editors, Authors, and Subscribers.
 
@@ -14,6 +14,8 @@ Restrict Content to registered users only. This is a simple plugin that will all
 For example, you can restrict content to only Administrators, Editors, Authors, and Subscribers.
 
 Content restriction works both with shortcodes and drop-down menu of access levels for complete posts / pages.
+
+Thanks to Dave Kuhar for adding the update to allow the "Contributor" user level.
 
 == Installation ==
 
@@ -31,6 +33,7 @@ Accepted userlevel values are:
  - admin
  - editor
  - author
+ - contributor
  - subscriber
 
  == Screenshots ==
