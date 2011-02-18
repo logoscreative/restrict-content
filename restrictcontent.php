@@ -6,9 +6,10 @@ Description: Restrict Content to registered users only. This is a simple plugin 
 
 This plugin will also allow you to restrict sections of content within a post or page.
 
-Version: 1.2
+Version: 1.2.2
 Author: Pippin Williamson
 Author URI: http://pippinspages.com
+Contributors: Pippin Williamson, Dave Kuhar
 Tags: Restrict content, member only, registered, logged in
 */
 
@@ -30,6 +31,10 @@ function restrict_shortcode( $atts, $content = null ) {
       {
       	return do_shortcode($content);
       }
+      if ($userlevel == 'contributor' && current_user_can('edit_posts'))
+      {
+	      	return do_shortcode($content);
+	  }
       if ($userlevel == 'subscriber' && current_user_can('read'))
       {
 	      	return do_shortcode($content);
@@ -58,7 +63,7 @@ $meta_box = array(
             'id' => $prefix . 'UserLevel',
             'type' => 'select',
             'desc' => 'Choose the user level that can see this page / post',
-            'options' => array('None', 'Administrator', 'Editor', 'Author', 'Subscriber'),
+            'options' => array('None', 'Administrator', 'Editor', 'Author', 'Contributor', 'Subscriber'),
             'std' => 'None'
         ),
         array(
@@ -185,7 +190,7 @@ function rcMetaDisplayAuthor($error = ' ')
 		return $error;
 	}
 }
-function rcMetaDisplaySubscriber($error = ' ')
+function rcMetaDisplayContributor($error = ' ')
 {
 	$custom_meta = get_post_custom($post->ID);
 	$rcUserLevel = $custom_meta['rcUserLevel'][0];
@@ -200,12 +205,27 @@ function rcMetaDisplaySubscriber($error = ' ')
 		return $error;
 	}
 }
+function rcMetaDisplaySubscriber($error = ' ')
+{
+	$custom_meta = get_post_custom($post->ID);
+	$rcUserLevel = $custom_meta['rcUserLevel'][0];
+
+	if ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor')
+	{
+		echo 'This content is restricted to ' . $rcUserLevel;
+	}
+	else
+	{
+		$error .= "";
+		return $error;
+	}
+}
 function rcMetaDisplayNone($error = ' ')
 {
 	$custom_meta = get_post_custom($post->ID);
 	$rcUserLevel = $custom_meta['rcUserLevel'][0];
 
-	if (!current_user_can('read') && $rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Subscriber')
+	if (!current_user_can('read') && $rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber')
 	{
 		echo 'This content is restricted to ' . $rcUserLevel;
 	}
@@ -220,22 +240,29 @@ function checkUser()
 
 	if (current_user_can('read'))
 	{		
-		if (current_user_can('upload_files'))
-		{
-			if (current_user_can('moderate_comments'))
+		if (current_user_can('edit_posts'))
+		{		
+			if (current_user_can('upload_files'))
 			{
-				if (current_user_can('switch_themes'))
+				if (current_user_can('moderate_comments'))
 				{
+					if (current_user_can('switch_themes'))
+					{
 					//do nothing here for admin
+					}
+					else
+					{
+						add_filter('the_content', 'rcMetaDisplayEditor');
+					}
 				}
 				else
 				{
-					add_filter('the_content', 'rcMetaDisplayEditor');
+					add_filter('the_content', 'rcMetaDisplayAuthor');
 				}
 			}
 			else
 			{
-				add_filter('the_content', 'rcMetaDisplayAuthor');
+				add_filter('the_content', 'rcMetaDisplayContributor');
 			}
 		}
 		else
