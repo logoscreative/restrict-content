@@ -46,10 +46,14 @@ http://pippinsplugins.com/restricted-content-plugin-free/
 
 == Changelog ==
 
-v2.0
+= 2.0 =
 
-Added settings page with options to configure each of the messages displayed to users who do not have permission to view a page.
+* Added settings page with options to configure each of the messages displayed to users who do not have permission to view a page.
+* Improved the performance of several functions.
+* Better organization of the plugin files and improved infrastructure for soon-to-come new features.
 
-Improved the performance of several functions.
+== Upgrade Notice ==
 
-Better organization of the plugin files and improved infrastructure for soon-to-come new features.
+= 2.0 =
+
+Added message configuration, custom post type support, and improved plugin infrastructure.
