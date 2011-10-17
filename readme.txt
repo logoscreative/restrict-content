@@ -1,5 +1,4 @@
 === Restrict Content ===
-Author: mordauk
 Author URI: http://pippinsplugins.com
 Contributors: Pippin Williamson
 Donate link: https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=__LAzNlDH1NR-QahrDPLyvSwLpA2uZ5GilvqzDyLBSRSLnofSWzs_VoBhc4&dispatch=5885d80a13c0db1f8e263663d3faee8dc18bca4c6f47e633fcf61b288f5ebea2
