@@ -9,7 +9,7 @@ This plugin will also allow you to restrict sections of content within a post or
 Version: 2.0
 Author: Pippin Williamson
 Author URI: http://pippinsplugins.com
-Contributors: Pippin Williamson, Dave Kuhar
+Contributors: Pippin Williamson
 Tags: Restrict content, member only, registered, logged in, restricted access, restrict access, limiit access, read-only, read only
 */
 
