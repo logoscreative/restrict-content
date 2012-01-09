@@ -27,7 +27,7 @@ Want to offer premium content to paid subscribers? Restrict Content Pro offers e
 * PayPal integration
 * Top notch tech support
 
-Check out [Restrict Content Pro] (http://pippinsplugins.com/restrict-content-pro-premium-content-plugin/ "Restrict Content Pro")
+Check out Restrict Content Pro: http://pippinsplugins.com/restrict-content-pro-premium-content-plugin/
 
 == Installation ==
 
