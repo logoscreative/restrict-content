@@ -1,10 +1,10 @@
 === Restrict Content ===
 Author URI: http://pippinsplugins.com
-Contributors: Pippin Williamson, Dave Kuhar
+Contributors: Pippin Williamson
 Donate link: https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=__LAzNlDH1NR-QahrDPLyvSwLpA2uZ5GilvqzDyLBSRSLnofSWzs_VoBhc4&dispatch=5885d80a13c0db1f8e263663d3faee8dc18bca4c6f47e633fcf61b288f5ebea2
 Tags: Restrict content, member only, registered, logged in, restricted access, restrict access, limiit access, read-only, read only
 Requires at least 2.8
-Tested up to 3.2.1
+Tested up to 3.3
 Stable tag: 2.0
 
 Restrict Content to registered users only. This is a simple plugin that will allow you to easily restrict complete posts / pages to logged in users only. Levels of restriction may also be set. For example, you can restrict content to only Administrators, Editors, Authors, and Subscribers.
@@ -17,6 +17,17 @@ For example, you can restrict content to only Administrators, Editors, Authors, 
 Content restriction works both with shortcodes and drop-down menu of access levels for complete posts / pages.
 
 v2.0 is also now completely compatible with custom post types.
+
+Want to offer premium content to paid subscribers? Restrict Content Pro offers everything you need:
+
+* Unlimited subscription levels
+* Comlete member management
+* Discount codes
+* Payment tracking
+* PayPal integration
+* Top notch tech support
+
+Check out [Restrict Content Pro] (http://pippinsplugins.com/restrict-content-pro-premium-content-plugin/ "Restrict Content Pro")
 
 == Installation ==
 
@@ -32,11 +43,11 @@ To restrict just a section of content within a post or page, you may use shortco
 [restrict userlevel="editor"] . . . your restricted content goes here . . . [/restrict]
 
 Accepted userlevel values are:
- - admin
- - editor
- - author
- - subscriber
- - contributor
+ * admin
+ * editor
+ * author
+ * subscriber
+ * contributor
 
  == Screenshots ==
  
@@ -46,10 +57,14 @@ http://pippinsplugins.com/restricted-content-plugin-free/
 
 == Changelog ==
 
-v2.0
+= 2.0 =
 
-Added settings page with options to configure each of the messages displayed to users who do not have permission to view a page.
+* Added settings page with options to configure each of the messages displayed to users who do not have permission to view a page.
+* Improved the performance of several functions.
+* Better organization of the plugin files and improved infrastructure for soon-to-come new features.
 
-Improved the performance of several functions.
+== Upgrade Notice ==
 
-Better organization of the plugin files and improved infrastructure for soon-to-come new features.
+= 2.0 =
+
+Added message configuration, custom post type support, and improved plugin infrastructure.
