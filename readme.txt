@@ -18,6 +18,17 @@ Content restriction works both with shortcodes and drop-down menu of access leve
 
 v2.0 is also now completely compatible with custom post types.
 
+Want to offer premium content to paid subscribers? Restrict Content Pro offers everything you need:
+
+* Unlimited subscription levels
+* Comlete member management
+* Discount codes
+* Payment tracking
+* PayPal integration
+* Top notch tech support
+
+Check out [Restrict Content Pro] (http://pippinsplugins.com/restrict-content-pro-premium-content-plugin/ "Restrict Content Pro")
+
 == Installation ==
 
 1. Upload restrict-content to wp-content/plugins
@@ -32,11 +43,11 @@ To restrict just a section of content within a post or page, you may use shortco
 [restrict userlevel="editor"] . . . your restricted content goes here . . . [/restrict]
 
 Accepted userlevel values are:
- - admin
- - editor
- - author
- - subscriber
- - contributor
+ * admin
+ * editor
+ * author
+ * subscriber
+ * contributor
 
  == Screenshots ==
  
