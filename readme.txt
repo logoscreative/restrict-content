@@ -62,6 +62,10 @@ http://pippinsplugins.com/restricted-content-plugin-free/
 
 == Changelog ==
 
+= 2.0.2 = 
+
+* Added new [not_logged_in] short code.
+
 = 2.0 =
 
 * Added settings page with options to configure each of the messages displayed to users who do not have permission to view a page.
@@ -69,6 +73,10 @@ http://pippinsplugins.com/restricted-content-plugin-free/
 * Better organization of the plugin files and improved infrastructure for soon-to-come new features.
 
 == Upgrade Notice ==
+
+= 2.0.2 = 
+
+* Added new [not_logged_in] short code.
 
 = 2.0 =
 
