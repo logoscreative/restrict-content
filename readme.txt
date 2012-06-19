@@ -2,11 +2,11 @@
 Author URI: http://pippinsplugins.com
 Author: Pippin Williamson
 Contributors: mordauk
-Donate link: https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=__LAzNlDH1NR-QahrDPLyvSwLpA2uZ5GilvqzDyLBSRSLnofSWzs_VoBhc4&dispatch=5885d80a13c0db1f8e263663d3faee8dc18bca4c6f47e633fcf61b288f5ebea2
+Donate link: http://pippinsplugins.com/support-the-site
 Tags: Restrict content, member only, registered, logged in, restricted access, restrict access, limiit access, read-only, read only
 Requires at least 2.8
-Tested up to 3.3.1
-Stable tag: 2.0.1
+Tested up to 3.4
+Stable tag: 2.0.2
 
 Restrict Content to registered users only. This is a simple plugin that will allow you to easily restrict complete posts / pages to logged in users only. Levels of restriction may also be set. For example, you can restrict content to only Administrators, Editors, Authors, and Subscribers.
 
@@ -49,6 +49,10 @@ Accepted userlevel values are:
  * author
  * subscriber
  * contributor
+
+There is also a short code for showing content only to users that are not logged in.
+
+[not_logged_in]This content is only shown to non-logged-in users.[/not_logged_in]
 
  == Screenshots ==
  

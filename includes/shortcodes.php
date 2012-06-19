@@ -38,3 +38,10 @@ function restrict_shortcode( $atts, $content = null ) {
       else return '<span style="color: red;">' . str_replace('{userlevel}', $userlevel, $rc_options['shortcode_message']) . '</span>';
 }
 add_shortcode('restrict', 'restrict_shortcode');
+
+function rc_not_logged_in($content) {
+	if(!is_user_logged_in()) {
+		return $content;
+	}
+}
+add_shortcode('not_logged_in', 'rc_not_logged_in');
