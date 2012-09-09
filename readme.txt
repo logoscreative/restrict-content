@@ -6,7 +6,7 @@ Donate link: http://pippinsplugins.com/support-the-site
 Tags: Restrict content, member only, registered, logged in, restricted access, restrict access, limiit access, read-only, read only
 Requires at least 2.8
 Tested up to 3.4.1
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 
 Restrict Content to registered users only. This is a simple plugin that will allow you to easily restrict complete posts / pages to logged in users only. Levels of restriction may also be set. For example, you can restrict content to only Administrators, Editors, Authors, and Subscribers.
 
@@ -62,6 +62,10 @@ http://pippinsplugins.com/restricted-content-plugin-free/
 
 == Changelog ==
 
+= 2.0.4 =
+
+* Added do_shortcode() to the not logged in short code
+
 = 2.0.3 =
 
 * Fixed a problem with the not logged in short code.
@@ -77,6 +81,10 @@ http://pippinsplugins.com/restricted-content-plugin-free/
 * Better organization of the plugin files and improved infrastructure for soon-to-come new features.
 
 == Upgrade Notice ==
+
+= 2.0.4 =
+
+* Added do_shortcode() to the not logged in short code
 
 = 2.0.3 =
 

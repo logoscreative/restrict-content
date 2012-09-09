@@ -41,7 +41,7 @@ add_shortcode('restrict', 'restrict_shortcode');
 
 function rc_not_logged_in($atts, $content = null) {
 	if(!is_user_logged_in()) {
-		return $content;
+		return do_shortcode( $content );
 	}
 }
 add_shortcode('not_logged_in', 'rc_not_logged_in');
