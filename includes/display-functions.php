@@ -13,7 +13,7 @@ function rcMetaDisplayEditor($content)
 
 	if ($rcUserLevel == 'Administrator')
 	{
-		echo $rc_options['editor_message'];
+		return do_shortcode( $rc_options['editor_message'] );
 	}
 	else
 	{
@@ -29,7 +29,7 @@ function rcMetaDisplayAuthor($content)
 
 	if ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor')
 	{
-		echo $rc_options['author_message'];
+		return do_shortcode( $rc_options['author_message'] );
 	}
 	else
 	{
@@ -46,7 +46,7 @@ function rcMetaDisplayContributor($content)
 
 	if ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author')
 	{
-		echo $rc_options['contributor_message'];
+		return do_shortcode( $rc_options['contributor_message'] );
 	}
 	else
 	{
@@ -63,7 +63,7 @@ function rcMetaDisplaySubscriber($content)
 
 	if ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor')
 	{
-		echo $rc_options['subscriber_message'];
+		return do_shortcode( $rc_options['subscriber_message'] );
 	}
 	else
 	{
@@ -83,7 +83,7 @@ function rcMetaDisplayNone($content)
 	if (!current_user_can('read') && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
 	{
 		$userLevelMessage = strtolower($rcUserLevel);
-		echo $rc_options[$userLevelMessage . '_message'];
+		return do_shortcode( $rc_options[$userLevelMessage . '_message'] );
 	} 
 	else
 	{

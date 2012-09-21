@@ -14,18 +14,18 @@ $rc_meta_box = array(
     'priority' => 'high',
     'fields' => array(
         array(
-            'name' => 'User Level',
+            'name' => __('User Level', 'restrict-content'),
             'id' => $prefix . 'UserLevel',
             'type' => 'select',
-            'desc' => 'Choose the user level that can see this page / post',
+            'desc' => __('Choose the user level that can see this page / post', 'restrict-content'),
             'options' => array('None', 'Administrator', 'Editor', 'Author', 'Contributor', 'Subscriber'),
             'std' => 'None'
         ),
         array(
-        	'name' => 'Hide from Feed?',
+        	'name' => __('Hide from Feed?', 'restrict-content'),
         	'id' => $prefix . 'FeedHide',
         	'type' => 'checkbox',
-        	'desc' => 'HIde the excerpt of this post / page from the Feed?',
+        	'desc' => __('Hide the excerpt of this post / page from the Feed?', 'restrict-content'),
         	'std' => ''
      	)
     )
@@ -52,7 +52,7 @@ function rcShowMetaBox() {
     
     echo '<table class="form-table">';
 
-	echo '<tr><td colspan="3">Use these options to restrict this entire entry, or the [restrict ...] ... [/restrict] short code to restrict partial content.</td></tr>';
+	echo '<tr><td colspan="3">' . __('Use these options to restrict this entire entry, or the [restrict ...] ... [/restrict] short code to restrict partial content.', 'restrict-content') . '</td></tr>';
 	
     foreach ($rc_meta_box['fields'] as $field) {
         // get current post meta data
