@@ -6,7 +6,10 @@
 
 function rcCheckUser()
 {
-	if (current_user_can('read'))
+
+	$ipperms = pardot_validate_ip();
+
+	if ($ipperms === true)
 	{		
 		if (current_user_can('edit_posts'))
 		{		

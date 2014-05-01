@@ -143,3 +143,48 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookmarks-settings')
 {
 	add_action('contextual_help', 'rc_contextual_help', 10, 3);
 }
+
+function pardot_validate_ip() {
+
+	$ipaddress = '';
+
+	if ($_SERVER['HTTP_CLIENT_IP'])
+		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+	else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+		$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	else if($_SERVER['HTTP_X_FORWARDED'])
+		$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+	else if($_SERVER['HTTP_FORWARDED_FOR'])
+		$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+	else if($_SERVER['HTTP_FORWARDED'])
+		$ipaddress = $_SERVER['HTTP_FORWARDED'];
+	else if($_SERVER['REMOTE_ADDR'])
+		$ipaddress = $_SERVER['REMOTE_ADDR'];
+	else
+		$ipaddress = 'UNKNOWN';
+
+	$allowed = preg_split('/\R/', get_option( 'pardot_whitelisted_ips', '' ));
+
+	if ( in_array( $ipaddress, $allowed ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function pardot_add_ip_fields() {
+	register_setting( 'reading', 'pardot_whitelisted_ips', 'esc_attr' );
+	add_settings_field(
+		'pardot_whitelisted_ips',
+		'<label for="pardot_whitelisted_ips">' . __( 'Whitelisted IPs for KB' , 'pardot_whitelisted_ips' ) . '</label>',
+		'fields_html',
+		'reading'
+	);
+}
+
+add_filter( 'admin_init' , 'pardot_add_ip_fields' );
+
+function fields_html() {
+	$value = get_option( 'pardot_whitelisted_ips', '' );
+	echo '<textarea id="pardot_whitelisted_ips" name="pardot_whitelisted_ips" rows="10" class="large-text">' . esc_attr( $value ) . '</textarea>';
+}
