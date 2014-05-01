@@ -72,6 +72,25 @@ function rcMetaDisplaySubscriber($content)
 	}
 }
 
+function rcMetaDisplayInternalTitle($title)
+{
+	return 'INTERNAL ONLY: ' . $title;
+
+}
+
+function rcMetaDisplayInternalWarning($content)
+{
+	$content = '<style type="text/css">.post-header{background:orange;}</style><div class="alert alert-danger">This article is validated for internal use only; not to be shared directly with customers.</div>' . $content;
+
+	return $content;
+
+}
+
+function rcMetaDoNotDisplayInternalTitle($title)
+{
+	return 'INTERNAL ONLY';
+}
+
 // this is the function used to display the error message to non-logged in users
 function rcMetaDisplayNone($content)
 {

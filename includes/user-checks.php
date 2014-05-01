@@ -39,11 +39,14 @@ function rcCheckUser()
 		else
 		{
 			add_filter('the_content', 'rcMetaDisplaySubscriber');
+			add_filter('the_title', 'rcMetaDisplayInternalTitle');
+			add_filter('the_content', 'rcMetaDisplayInternalWarning', 9);
 		}				
 	}
 	else
 	{
 		add_filter('the_content', 'rcMetaDisplayNone');
+		add_filter('the_title', 'rcMetaDoNotDisplayInternalTitle');
 	}
 
 }
