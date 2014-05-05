@@ -81,11 +81,11 @@ function rcMetaDisplayInternalTitle($title)
 
 	$ipperms = pardot_validate_ip();
 
-	if ($title == $post->post_title && in_the_loop() && ( !current_user_can('read') && !is_user_logged_in() && $ipperms === false ) && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	if ($title == $post->post_title && in_the_loop() && ( !current_user_can('read') && !is_user_logged_in() && $ipperms === false ) && $rcUserLevel == 'Internal Only')
 	{
 		return 'INTERNAL ONLY';
 	}
-	elseif ($title == $post->post_title && in_the_loop() && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	elseif ($title == $post->post_title && in_the_loop() && $rcUserLevel == 'Internal Only')
 	{
 		// return the content unfilitered
 		return 'INTERNAL ONLY: ' . $title;
@@ -103,7 +103,7 @@ function rcMetaDisplayInternalWarning($content)
 
 	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
 
-	if ( ( $rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber') && is_single() )
+	if ( $rcUserLevel == 'Internal Only' && is_single() )
 	{
 		$content = '<style type="text/css">.post-header{background:orange;}</style><div class="alert alert-danger">This article is validated for internal use only; not to be shared directly with customers.</div>' . $content;
 
@@ -121,11 +121,11 @@ function rcMetaDoNotDisplayInternalTitle($title)
 
 	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
 
-	if ($title == $post->post_title && in_the_loop() && !current_user_can('read') && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	if ($title == $post->post_title && in_the_loop() && !current_user_can('read') && $rcUserLevel == 'Internal Only')
 	{
 		return 'INTERNAL ONLY';
 	}
-	elseif ($title == $post->post_title && in_the_loop() && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	elseif ($title == $post->post_title && in_the_loop() && $rcUserLevel == 'Internal Only')
 	{
 		// return the content unfilitered
 		return 'INTERNAL ONLY: ' . $title;
@@ -145,7 +145,7 @@ function rcMetaDisplayNoWay($content)
 
 	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
 
-	if (!current_user_can('read') && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	if (!current_user_can('read') && $rcUserLevel == 'Internal Only')
 	{
 		$content = "This article covers such an advanced concept that it has been marked for internal Pardot use only. If you believe you should have access to this article (or wish to learn more about this concept that isn't covered in other help articles), please file a case with our Support team using the 'Contact Support' button to the right.";
 		return $content;
@@ -165,7 +165,7 @@ function rcMetaDisplayNone($content)
 	
 	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
 
-	if (!current_user_can('read') && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	if (!current_user_can('read') && $rcUserLevel == 'Internal Only')
 	{
 		$userLevelMessage = strtolower($rcUserLevel);
 		return do_shortcode( $rc_options[$userLevelMessage . '_message'] );

@@ -9,25 +9,16 @@ $prefix = 'rc';
 
 $rc_meta_box = array(
     'id' => 'rcMetaBox',
-    'title' => 'Restrict this content',
-    'context' => 'normal',
+    'title' => 'Internal Only Content',
+    'context' => 'side',
     'priority' => 'high',
     'fields' => array(
         array(
-            'name' => __('User Level', 'restrict-content'),
             'id' => $prefix . 'UserLevel',
             'type' => 'select',
-            'desc' => __('Choose the user level that can see this page / post', 'restrict-content'),
-            'options' => array('None', 'Administrator', 'Editor', 'Author', 'Contributor', 'Subscriber'),
+            'options' => array('None', 'Internal Only'),
             'std' => 'None'
-        ),
-        array(
-        	'name' => __('Hide from Feed?', 'restrict-content'),
-        	'id' => $prefix . 'FeedHide',
-        	'type' => 'checkbox',
-        	'desc' => __('Hide the excerpt of this post / page from the Feed?', 'restrict-content'),
-        	'std' => ''
-     	)
+        )
     )
 );
 
@@ -52,14 +43,11 @@ function rcShowMetaBox() {
     
     echo '<table class="form-table">';
 
-	echo '<tr><td colspan="3">' . __('Use these options to restrict this entire entry, or the [restrict ...] ... [/restrict] short code to restrict partial content.', 'restrict-content') . '</td></tr>';
-	
     foreach ($rc_meta_box['fields'] as $field) {
         // get current post meta data
         $meta = get_post_meta($post->ID, $field['id'], true);
         
         echo '<tr>',
-                '<th style="width:20%"><label for="', $field['id'], '">', $field['name'], '</label></th>',
                 '<td>';
         switch ($field['type']) {
             case 'select':
