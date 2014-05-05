@@ -74,13 +74,40 @@ function rcMetaDisplaySubscriber($content)
 
 function rcMetaDisplayInternalTitle($title)
 {
-	return 'INTERNAL ONLY: ' . $title;
+	global $rc_options;
+	global $post;
 
+	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
+
+	$ipperms = pardot_validate_ip();
+
+	if ($title == $post->post_title && in_the_loop() && ( !current_user_can('read') && !is_user_logged_in() && $ipperms === false ) && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	{
+		return 'INTERNAL ONLY';
+	}
+	elseif ($title == $post->post_title && in_the_loop() && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	{
+		// return the content unfilitered
+		return 'INTERNAL ONLY: ' . $title;
+	}
+	else
+	{
+		return $title;
+	}
 }
 
 function rcMetaDisplayInternalWarning($content)
 {
-	$content = '<style type="text/css">.post-header{background:orange;}</style><div class="alert alert-danger">This article is validated for internal use only; not to be shared directly with customers.</div>' . $content;
+
+	global $post;
+
+	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
+
+	if ( ( $rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber') && is_single() )
+	{
+		$content = '<style type="text/css">.post-header{background:orange;}</style><div class="alert alert-danger">This article is validated for internal use only; not to be shared directly with customers.</div>' . $content;
+
+	}
 
 	return $content;
 
@@ -88,7 +115,46 @@ function rcMetaDisplayInternalWarning($content)
 
 function rcMetaDoNotDisplayInternalTitle($title)
 {
-	return 'INTERNAL ONLY';
+
+	global $rc_options;
+	global $post;
+
+	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
+
+	if ($title == $post->post_title && in_the_loop() && !current_user_can('read') && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	{
+		return 'INTERNAL ONLY';
+	}
+	elseif ($title == $post->post_title && in_the_loop() && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	{
+		// return the content unfilitered
+		return 'INTERNAL ONLY: ' . $title;
+	}
+	else
+	{
+		return $title;
+	}
+
+}
+
+// this is the function used to display the error message to non-logged in users
+function rcMetaDisplayNoWay($content)
+{
+	global $rc_options;
+	global $post;
+
+	$rcUserLevel = get_post_meta($post->ID, 'rcUserLevel', true);
+
+	if (!current_user_can('read') && ($rcUserLevel == 'Administrator' || $rcUserLevel == 'Editor' || $rcUserLevel == 'Author' || $rcUserLevel == 'Contributor' || $rcUserLevel == 'Subscriber'))
+	{
+		$content = "This article covers such an advanced concept that it has been marked for internal Pardot use only. If you believe you should have access to this article (or wish to learn more about this concept that isn't covered in other help articles), please file a case with our Support team using the 'Contact Support' button to the right.";
+		return $content;
+	}
+	else
+	{
+		// return the content unfilitered
+		return $content;
+	}
 }
 
 // this is the function used to display the error message to non-logged in users
@@ -110,3 +176,36 @@ function rcMetaDisplayNone($content)
 		return $content;
 	}
 }
+
+function rcMetaDisplayTotallyHide($query) {
+
+	if ( is_single() || is_page() || is_admin() || is_front_page() ) {
+		return;
+	}
+
+	$ipperms = pardot_validate_ip();
+
+	if ( $ipperms === false && !is_user_logged_in() )
+	{
+
+		$query->set('meta_query', array(
+			'relation' => 'OR',
+			array(
+				'key'     => 'rcUserLevel',
+				'value'   => '',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => 'rcUserLevel',
+				'value'   => 'None',
+				'compare' => 'LIKE',
+			),
+		) );
+
+	}
+
+	return $query;
+
+}
+
+add_action('pre_get_posts', 'rcMetaDisplayTotallyHide');
